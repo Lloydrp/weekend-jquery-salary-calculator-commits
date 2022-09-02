@@ -12,10 +12,38 @@
 </head>
 
 <body>
-    <header>Salary Calculator</header>
-    <section>[ADD EE INFO]</section>
-    <section>[ADD EE TABLE]</section>
-    <footer>[ADD TOTAL MONTHLY]</footer>
+    <header>
+        <h1>Salary Calculator</h1>
+    </header>
+    <section>
+        <h3>Add Employee</h3>
+        <input id="inputFirstName" type="text" placeholder="Enter First Name">
+        <input id="inputLastName" type="text" placeholder="Enter Last Name">
+        <input id="inputEEID" type="number" placeholder="Enter Employee ID">
+        <input id="inputTitle" type="text" placeholder="Enter Title">
+        <input id="inputAnnualSalary" type="number" placeholder="Enter Annual Salary">
+        <button id="addEmployeeBtn">Submit</button>
+    </section>
+    <section>
+        <h3>Employees</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>ID</td>
+                    <td>Title</td>
+                    <td>Annual Salary</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </section>
+    <footer>
+        <p>Total Monthly: <span id="costMonthly">0</span></p>
+    </footer>
 </body>
 
 </html>
