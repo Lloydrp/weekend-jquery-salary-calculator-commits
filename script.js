@@ -18,6 +18,12 @@ function appendDom() {
         `);
     }
     $("#costMonthly").text(`${calculateTotalMonthly(employeeList)}`);
+
+    if (Number($("#costMonthly").text()) > 20000) {
+        $("#costMonthly").addClass("redBackground");
+    } else {
+        $("#costMonthly").removeClass("redBackground");
+    }
 }
 
 function calculateTotalMonthly(array) {
