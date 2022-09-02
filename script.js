@@ -31,7 +31,7 @@ function calculateTotalMonthly(array) {
     for (const employee of array) {
         sum += Number(employee.annualSalary / 12);
     }
-    return sum;
+    return sum.toFixed(2);
 }
 
 function collectEmployeeInfo() {
@@ -81,6 +81,12 @@ function processEmployeeInfo() {
 
 function eventHandlers() {
     $("#addEmployeeBtn").on("click", processEmployeeInfo)
+    $("html").on("keypress", (event) => {
+        if (event.which === 13) {
+            $("#inputFirstName").focus();
+            return processEmployeeInfo();
+        }
+    });
     $("#tableBody").on("click", ".deleteBtn", deleteEmployee)
 }
 
