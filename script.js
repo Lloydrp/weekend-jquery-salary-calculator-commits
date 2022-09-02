@@ -3,7 +3,19 @@ $(onReady)
 let employeeList = [];
 
 function appendDom() {
-
+    $("#tableBody").empty();
+    for (const employee of employeeList) {
+        $("#tableBody").append(`
+        <tr>
+            <td>${employee.firstName}</td>
+            <td>${employee.lastName}</td>
+            <td>${employee.employeeID}</td>
+            <td>${employee.title}</td>
+            <td>${employee.annualSalary}</td>
+            <td><button class="deleteButton">Delete</button></td>
+        </tr>
+        `);
+    }
 }
 
 function collectEmployeeInfo() {
@@ -28,6 +40,7 @@ function clearInputs() {
 function processEmployeeInfo() {
     employeeList.push(collectEmployeeInfo());
     clearInputs();
+    appendDom();
 }
 
 function eventHandlers() {
