@@ -1,3 +1,4 @@
+/// <reference path="jquery.js" />
 $(onReady)
 
 let employeeList = [];
@@ -12,7 +13,7 @@ function appendDom() {
             <td>${employee.employeeID}</td>
             <td>${employee.title}</td>
             <td>${employee.annualSalary}</td>
-            <td><button class="deleteButton">Delete</button></td>
+            <td><button class="deleteBtn">Delete</button></td>
         </tr>
         `);
     }
@@ -37,6 +38,10 @@ function clearInputs() {
     $("#inputAnnualSalary").val("");
 }
 
+function deleteEmployee(event) {
+    $(event.target).closest("tr").remove();
+}
+
 function processEmployeeInfo() {
     employeeList.push(collectEmployeeInfo());
     clearInputs();
@@ -45,6 +50,7 @@ function processEmployeeInfo() {
 
 function eventHandlers() {
     $("#addEmployeeBtn").on("click", processEmployeeInfo)
+    $("#tableBody").on("click", ".deleteBtn", deleteEmployee)
 }
 
 function onReady() {
