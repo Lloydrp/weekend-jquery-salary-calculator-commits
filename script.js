@@ -17,6 +17,15 @@ function appendDom() {
         </tr>
         `);
     }
+    $("#costMonthly").text(`${calculateTotalMonthly(employeeList)}`);
+}
+
+function calculateTotalMonthly(array) {
+    let sum = 0;
+    for (const employee of array) {
+        sum += Number(employee.annualSalary / 12);
+    }
+    return sum;
 }
 
 function collectEmployeeInfo() {
@@ -40,12 +49,23 @@ function clearInputs() {
 
 function deleteEmployee(event) {
     $(event.target).closest("tr").remove();
+    let eeChildID = $(event.target).closest("tr").children()[2];
+    let arrayLocation = employeeList.findIndex((employee) => Number(employee.employeeID) === Number($(eeChildID).text()));
+    employeeList.splice(arrayLocation, 1);
+    appendDom();
 }
 
 function processEmployeeInfo() {
-    employeeList.push(collectEmployeeInfo());
-    clearInputs();
-    appendDom();
+    let newEmployee = collectEmployeeInfo();
+    for (const employee of employeeList) {
+        if (employee.employeeID === newEmployee.employeeID) {
+            break;
+        } else {
+            employeeList.push(collectEmployeeInfo());
+            clearInputs();
+            appendDom();
+        }
+    }
 }
 
 function eventHandlers() {
