@@ -56,15 +56,20 @@ function deleteEmployee(event) {
 }
 
 function processEmployeeInfo() {
+    let foundID = false;
     let newEmployee = collectEmployeeInfo();
     for (const employee of employeeList) {
         if (employee.employeeID === newEmployee.employeeID) {
-            break;
-        } else {
-            employeeList.push(collectEmployeeInfo());
-            clearInputs();
-            appendDom();
+            foundID = true;
         }
+    }
+    if (foundID === false) {
+        employeeList.push(collectEmployeeInfo());
+        clearInputs();
+        appendDom();
+    } else {
+        clearInputs();
+        console.log("EmployeeID already in use!");
     }
 }
 
